@@ -1,11 +1,22 @@
-import React from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext';
 
 export const LoginPages = () => {
+
+  // Nos traemos el login del context
+  const { login } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const onLogin = () => {
-    navigate('/', {
+
+    const lastPath = localStorage.getItem('lastpath') || '/';
+
+    console.log(lastPath);
+    login("Jesus Sánchez");
+
+    navigate(lastPath, {
       replace: true
     })
   }
